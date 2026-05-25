@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA // Share Your Frequency</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        euphoria: {
+                            purple: '#12072B',
+                            violet: '#6320EE',
+                            pink: '#F8333C',
+                            cyan: '#48CAE4',
+                            magenta: '#D81159',
+                            dark: '#08020f',
+                            neonviolet: '#bc00dd'
+                        }
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'glimmer': 'glimmer 1.5s ease-in-out infinite alternate',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-10px) rotate(1deg)' },
+                        },
+                        glimmer: {
+                            '0%': { opacity: '0.4', filter: 'drop-shadow(0 0 2px rgba(188,0,221,0.5))' },
+                            '100%': { opacity: '1', filter: 'drop-shadow(0 0 15px rgba(188,0,221,1))' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Syne (para títulos dramáticos) y Inter (para cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #08020f;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(99, 32, 238, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(216, 17, 89, 0.15) 0px, transparent 50%),
+                radial-gradient(at 50% 50%, rgba(18, 7, 43, 0.95) 0px, #08020f 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+        .font-syne {
+            font-family: 'Syne', sans-serif;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #08020f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #6320EE;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D81159;
+        }
+        /* Glassmorphism Classes */
+        .glass-panel {
+            background: rgba(18, 7, 43, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-panel-active {
+            background: rgba(99, 32, 238, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(188, 0, 221, 0.3);
+        }
+        .neon-glow-violet {
+            box-shadow: 0 0 20px rgba(188, 0, 221, 0.25);
+        }
+        .neon-glow-pink {
+            box-shadow: 0 0 20px rgba(248, 51, 60, 0.25);
+        }
+        .neon-glow-cyan {
+            box-shadow: 0 0 20px rgba(72, 202, 228, 0.25);
+        }
+        /* Glitter Sparkle Overlay simulating analog noise */
+        .glitter-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3联%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.025'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body class="text-gray-100 min-h-screen relative pb-24 md:pb-6">
+    <div class="glitter-overlay"></div>
+
+    <!-- BACKGROUND AMBIENCE GLOWS -->
+    <div class="absolute top-10 left-10 w-96 h-96 bg-euphoria-violet rounded-full filter blur-[150px] opacity-20 pointer-events-none animate-pulse-slow"></div>
+    <div class="absolute bottom-20 right-10 w-[450px] h-[450px] bg-euphoria-magenta rounded-full filter blur-[180px] opacity-15 pointer-events-none animate-pulse-slow" style="animation-delay: 2s;"></div>
+
+    <!-- MAIN APP WRAPPER -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6">
+        
+        <!-- HEADER / NAVIGATION -->
+        <header class="glass-panel rounded-3xl p-5 mb-8 flex justify-between items-center border-opacity-25 relative z-10 neon-glow-violet">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-euphoria-violet via-euphoria-magenta to-euphoria-cyan flex items-center justify-center shadow-lg shadow-euphoria-violet/40 animate-spin-slow">
+                    <span class="font-syne text-xl text-white font-extrabold tracking-tighter">A</span>
+                </div>
+                <div>
+                    <h1 class="font-syne text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-white via-pink-300 to-euphoria-cyan tracking-wide">AURA</h1>
+                    <p class="text-[10px] tracking-[0.25em] text-euphoria-cyan uppercase font-semibold">Share your frequency</p>
+                </div>
+            </div>
+
+            <!-- Ambient Music Control -->
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex flex-col items-end mr-2">
+                    <span id="track-title" class="text-xs text-pink-300 font-medium tracking-wide">Labrinth - Still Don't Know My Name (Lofi-Edit)</span>
+                    <span class="text-[9px] text-gray-400">Ambient Soundtrack Activo</span>
+                </div>
+                <button id="music-btn" onclick="toggleMusic()" class="p-3 rounded-full bg-white/5 hover:bg-white/10 text-euphoria-cyan border border-white/10 transition-all duration-300 active:scale-95 group">
+                    <i data-lucide="music" class="w-5 h-5 group-hover:scale-110 transition-transform"></i>
+                </button>
+                <div class="h-6 w-[1px] bg-white/10 hidden sm:block"></div>
+                <div class="hidden sm:flex items-center gap-3">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Avatar Usuario" class="w-10 h-10 rounded-full border-2 border-euphoria-magenta object-cover" onerror="this.src='https://placehold.co/100x100/12072b/ffffff?text=U'">
+                    <div class="text-left">
+                        <p class="text-xs font-semibold text-white">Maddy Perez</p>
+                        <p class="text-[9px] text-euphoria-cyan">@maddy_frequency</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 relative z-10">
+            
+            <!-- LEFT COLUMN: SIDEBAR CONTROLS & CHANNELS -->
+            <aside class="col-span-1 lg:col-span-3 space-y-6">
+                <!-- Profile Status & Aura Energy Card -->
+                <div class="glass-panel rounded-3xl p-6 relative overflow-hidden group">
+                    <div class="absolute -top-12 -right-12 w-24 h-24 bg-euphoria-cyan rounded-full filter blur-xl opacity-30 group-hover:scale-150 transition-all duration-500"></div>
+                    <h3 class="font-syne text-sm text-gray-400 uppercase tracking-widest mb-4">Tu Esencia Actual</h3>
+                    <div class="flex flex-col items-center py-4">
+                        <div class="relative mb-4">
+                            <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-euphoria-violet via-euphoria-magenta to-transparent blur-md scale-110 opacity-80 animate-pulse"></div>
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Maddy" class="w-24 h-24 rounded-full object-cover border-4 border-white/15 relative z-10">
+                        </div>
+                        <h4 class="font-syne text-lg text-white font-bold">Maddy Perez</h4>
+                        <p class="text-xs text-gray-400 mb-4">@maddy_frequency</p>
+                        
+                        <!-- Aura Indicator -->
+                        <div class="w-full bg-white/5 border border-white/10 rounded-2xl p-4 text-center">
+                            <span class="text-[10px] tracking-widest text-euphoria-cyan uppercase font-bold block mb-1">Aura Dominante</span>
+                            <span id="user-aura-tag" class="text-sm font-semibold bg-clip-text text-transparent bg-gradient-to-r from-euphoria-magenta to-purple-400 animate-pulse">Euphoric Glitch</span>
+                            <div class="w-full bg-white/10 h-1.5 rounded-full mt-3 overflow-hidden">
+                                <div id="user-aura-bar" class="bg-gradient-to-r from-euphoria-magenta via-euphoria-violet to-euphoria-cyan h-full w-[82%] rounded-full transition-all duration-500"></div>
+                            </div>
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-2">
+                                <span>82% Frecuencia</span>
+                                <span>Sintonía Neón</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Trending Mood Frequencies -->
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3 class="font-syne text-sm text-gray-400 uppercase tracking-widest mb-4">Tendencias de Frecuencia</h3>
+                    <div class="space-y-4">
+                        <div onclick="selectFrequency('electric-dream')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-euphoria-violet/20 border border-white/5 hover:border-euphoria-violet/40 cursor-pointer transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-euphoria-cyan animate-ping"></span>
+                                <span class="text-xs font-semibold text-white">#ElectricDream</span>
+                            </div>
+                            <span class="text-[10px] bg-euphoria-cyan/20 text-euphoria-cyan px-2.5 py-1 rounded-full font-bold">14.2k</span>
+                        </div>
+                        <div onclick="selectFrequency('neon-melancholy')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-euphoria-magenta/20 border border-white/5 hover:border-euphoria-magenta/40 cursor-pointer transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-euphoria-magenta"></span>
+                                <span class="text-xs font-semibold text-white">#NeonMelancholy</span>
+                            </div>
+                            <span class="text-[10px] bg-euphoria-magenta/20 text-euphoria-magenta px-2.5 py-1 rounded-full font-bold">9.8k</span>
+                        </div>
+                        <div onclick="selectFrequency('cyber-glitter')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-purple-500/20 border border-white/5 hover:border-purple-500/40 cursor-pointer transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+                                <span class="text-xs font-semibold text-white">#CyberGlitter</span>
+                            </div>
+                            <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2.5 py-1 rounded-full font-bold">21.5k</span>
+                        </div>
+                        <div onclick="selectFrequency('glitch-nostalgia')" class="flex items-center justify-between p-3 rounded-2xl bg-white/5 hover:bg-yellow-500/20 border border-white/5 hover:border-yellow-500/40 cursor-pointer transition-all duration-300">
+                            <div class="flex items-center gap-3">
+                                <span class="w-2.5 h-2.5 rounded-full bg-yellow-400"></span>
+                                <span class="text-xs font-semibold text-white">#GlitchNostalgia</span>
+                            </div>
+                            <span class="text-[10px] bg-yellow-400/20 text-yellow-300 px-2.5 py-1 rounded-full font-bold">4.1k</span>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- CENTER COLUMN: INTERACTIVE FEED & CREATOR -->
+            <main class="col-span-1 lg:col-span-6 space-y-6">
+                <!-- Aura Generator & Creator Panel -->
+                <div class="glass-panel rounded-3xl p-6 relative overflow-hidden border-euphoria-violet/30 neon-glow-violet">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="sparkles" class="w-5 h-5 text-euphoria-cyan animate-pulse"></i>
+                            <h2 class="font-syne text-base font-bold text-white tracking-wide">Expresa Tu Aura</h2>
+                        </div>
+                        <!-- Mood Chips selector -->
+                        <div class="flex gap-2">
+                            <button id="mood-euphoric" onclick="setPostMood('euphoric')" class="px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-euphoria-violet/60 text-white border border-euphoria-violet/80 transition-all duration-300 shadow-md">Eufórico</button>
+                            <button id="mood-melancholic" onclick="setPostMood('melancholic')" class="px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-all duration-300">Melancólico</button>
+                            <button id="mood-dreamy" onclick="setPostMood('dreamy')" class="px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-all duration-300">Onírico</button>
+                        </div>
+                    </div>
+
+                    <!-- Input Area -->
+                    <div class="relative mb-4">
+                        <textarea id="post-text" placeholder="¿Qué frecuencia estás vibrando hoy? Escribe algo poético, dramático o brillante..." class="w-full bg-white/5 focus:bg-white/10 border border-white/10 focus:border-euphoria-violet rounded-2xl p-4 min-h-[110px] focus:outline-none focus:ring-1 focus:ring-euphoria-violet text-sm transition-all duration-300 placeholder-gray-500 text-white leading-relaxed resize-none"></textarea>
+                        <!-- Glow effect matching currently chosen mood -->
+                        <div id="glow-indicator" class="absolute bottom-3 right-4 flex items-center gap-2 bg-[#12072b]/80 border border-white/10 rounded-xl px-3 py-1.5 text-xs">
+                            <span class="w-2 h-2 rounded-full bg-euphoria-violet animate-pulse" id="glow-indicator-dot"></span>
+                            <span class="text-gray-400 text-[10px]" id="glow-indicator-text">Tono Violeta</span>
+                        </div>
+                    </div>
+
+                    <!-- Post Controls & Interactive Enhancer -->
+                    <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/10">
+                        <div class="flex gap-3">
+                            <button onclick="triggerGeminiAuraArt()" class="flex items-center gap-1.5 text-xs bg-gradient-to-r from-euphoria-violet to-euphoria-magenta hover:from-euphoria-magenta hover:to-euphoria-violet text-white px-4 py-2.5 rounded-xl font-bold transition-all duration-300 hover:shadow-[0_0_15px_rgba(188,0,221,0.5)] active:scale-95">
+                                <i data-lucide="wand2" class="w-4 h-4"></i>
+                                Generar Arte Aura (IA)
+                            </button>
+                            <button onclick="document.getElementById('image-uploader').click()" class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-300 transition-colors">
+                                <i data-lucide="image" class="w-4.5 h-4.5"></i>
+                                <input type="file" id="image-uploader" class="hidden" accept="image/*" onchange="previewUploadedImage(event)">
+                            </button>
+                            <button onclick="toggleAudioRecorder()" id="mic-trigger" class="p-2.5 bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl text-gray-300 transition-colors">
+                                <i data-lucide="mic" class="w-4.5 h-4.5"></i>
+                            </button>
+                        </div>
+                        
+                        <button onclick="publishPost()" class="bg-white hover:bg-gray-100 text-euphoria-dark font-syne font-extrabold text-xs tracking-wider px-6 py-2.5 rounded-xl transition-all duration-300 active:scale-95 shadow-lg shadow-white/10">
+                            TRANSMITIR
+                        </button>
+                    </div>
+
+                    <!-- Simulated Image/Audio/AI Preview Container -->
+                    <div id="enhancement-preview" class="hidden mt-4 p-4 rounded-2xl bg-white/5 border border-white/10 relative">
+                        <button onclick="clearEnhancements()" class="absolute top-2 right-2 text-gray-400 hover:text-white bg-black/40 p-1 rounded-full"><i data-lucide="x" class="w-4 h-4"></i></button>
+                        <div id="enhancement-content" class="flex flex-col items-center justify-center text-center">
+                            <!-- Dynamic content injected here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- REAL-TIME CONVERSATION / POSTS FEED -->
+                <div id="posts-feed" class="space-y-6">
+                    <!-- Post 1 (Preloaded) -->
+                    <div class="glass-panel rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1 relative overflow-hidden group">
+                        <div class="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-tr from-euphoria-violet to-transparent rounded-full filter blur-xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                        
+                        <!-- Post Header -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=200" alt="Cassie" class="w-10 h-10 rounded-full object-cover border border-euphoria-magenta" onerror="this.src='https://placehold.co/100x100/12072b/ffffff?text=C'">
+                                <div>
+                                    <h4 class="font-bold text-xs text-white">Cassie Howard</h4>
+                                    <p class="text-[9px] text-gray-400">Hace 12 min via #NeonMelancholy</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-euphoria-magenta bg-euphoria-magenta/10 border border-euphoria-magenta/30 px-3 py-1 rounded-full">Melancólico</span>
+                        </div>
+
+                        <!-- Post Body Content -->
+                        <p class="text-sm text-gray-200 leading-relaxed mb-4 font-light">
+                            ¿Alguna vez han sentido que quieren ser amados de una forma tan absoluta que casi da miedo? Como si toda tu existencia se redujera al brillo de los ojos de alguien más bajo el halo violeta de una discoteca en decadencia... 🪩✨
+                        </p>
+
+                        <!-- Interactive Image Post with Filter Overlay -->
+                        <div class="relative rounded-2xl overflow-hidden mb-4 border border-white/5 aspect-video">
+                            <!-- Overlay dramatic filter mirroring euphoria camera work -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-euphoria-dark/60 via-transparent to-transparent z-10"></div>
+                            <div class="absolute inset-0 bg-gradient-to-r from-euphoria-violet/25 via-transparent to-euphoria-magenta/25 mix-blend-color-dodge z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=1200" alt="Night lights neon" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[6s]">
+                        </div>
+
+                        <!-- Post Footer Actions -->
+                        <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                            <div class="flex gap-4">
+                                <button onclick="reactToPost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-magenta transition-colors">
+                                    <i data-lucide="heart" class="w-4.5 h-4.5"></i>
+                                    <span>2.4k</span>
+                                </button>
+                                <button onclick="toggleComments('comment-box-1')" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-cyan transition-colors">
+                                    <i data-lucide="message-circle" class="w-4.5 h-4.5"></i>
+                                    <span>382</span>
+                                </button>
+                                <button onclick="reverberatePost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-purple-400 transition-colors">
+                                    <i data-lucide="repeat" class="w-4.5 h-4.5"></i>
+                                    <span>89</span>
+                                </button>
+                            </div>
+                            <button class="text-xs text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="share-2" class="w-4.5 h-4.5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Comment Box (Collapsible) -->
+                        <div id="comment-box-1" class="hidden mt-4 pt-4 border-t border-white/5 space-y-3">
+                            <div class="flex items-start gap-2 text-xs">
+                                <span class="font-bold text-euphoria-cyan">@maddy_frequency</span>
+                                <span class="text-gray-300 leading-relaxed">Cassie, eres arte. No dejes que nadie limite tu espectro. Te quiero 💜</span>
+                            </div>
+                            <div class="flex items-start gap-2 text-xs">
+                                <span class="font-bold text-pink-400">@rue_cloud</span>
+                                <span class="text-gray-300 leading-relaxed">Profundo... a veces el silencio es más brillante.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 (Preloaded) -->
+                    <div class="glass-panel rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1 relative overflow-hidden group">
+                        <!-- Post Header -->
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=200" alt="Nate" class="w-10 h-10 rounded-full object-cover border border-euphoria-violet" onerror="this.src='https://placehold.co/100x100/12072b/ffffff?text=N'">
+                                <div>
+                                    <h4 class="font-bold text-xs text-white">Nate Jacobs</h4>
+                                    <p class="text-[9px] text-gray-400">Hace 1 hora via #ElectricDream</p>
+                                </div>
+                            </div>
+                            <span class="text-[10px] uppercase font-bold tracking-widest text-euphoria-cyan bg-euphoria-cyan/10 border border-euphoria-cyan/30 px-3 py-1 rounded-full">Eufórico</span>
+                        </div>
+
+                        <!-- Post Body Content -->
+                        <p class="text-sm text-gray-200 leading-relaxed mb-4 font-light">
+                            Buscando el límite del caos absoluto. Adrenalina pura fluyendo a través de la noche estrellada. En Aura no nos escondemos, nos sobrecargamos. ⚡🔋
+                        </p>
+
+                        <!-- Post Footer Actions -->
+                        <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                            <div class="flex gap-4">
+                                <button onclick="reactToPost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-magenta transition-colors">
+                                    <i data-lucide="heart" class="w-4.5 h-4.5"></i>
+                                    <span>842</span>
+                                </button>
+                                <button onclick="toggleComments('comment-box-2')" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-cyan transition-colors">
+                                    <i data-lucide="message-circle" class="w-4.5 h-4.5"></i>
+                                    <span>94</span>
+                                </button>
+                                <button onclick="reverberatePost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-purple-400 transition-colors">
+                                    <i data-lucide="repeat" class="w-4.5 h-4.5"></i>
+                                    <span>12</span>
+                                </button>
+                            </div>
+                            <button class="text-xs text-gray-400 hover:text-white transition-colors">
+                                <i data-lucide="share-2" class="w-4.5 h-4.5"></i>
+                            </button>
+                        </div>
+
+                        <!-- Comment Box (Collapsible) -->
+                        <div id="comment-box-2" class="hidden mt-4 pt-4 border-t border-white/5 space-y-3">
+                            <div class="flex items-start gap-2 text-xs">
+                                <span class="font-bold text-purple-400">@fezco_store</span>
+                                <span class="text-gray-300 leading-relaxed">Cuidado con donde pisas, amigo. La adrenalina a veces quema.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- RIGHT COLUMN: INTERACTIVE ROOMS & GLITTER AI CHAT -->
+            <aside class="col-span-1 lg:col-span-3 space-y-6">
+                <!-- Glitter AI Chat Bot (Gemini Integration Panel) -->
+                <div class="glass-panel rounded-3xl p-6 border-euphoria-magenta/30 neon-glow-pink relative overflow-hidden flex flex-col h-[480px]">
+                    <div class="absolute -top-10 -right-10 w-28 h-28 bg-euphoria-magenta rounded-full filter blur-xl opacity-20 pointer-events-none"></div>
+                    
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-euphoria-magenta to-purple-600 flex items-center justify-center shadow-lg shadow-euphoria-magenta/20">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-white animate-pulse"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-syne text-sm font-bold text-white tracking-wide">GLITTER AI</h3>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                                <span class="text-[9px] text-gray-400 uppercase tracking-wider">Lectora de Sentimientos</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Message Area -->
+                    <div id="chat-messages" class="flex-1 overflow-y-auto space-y-3 mb-4 pr-1 text-xs">
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-gray-200">
+                            <p class="font-semibold text-euphoria-cyan mb-1">Glitter AI ✨</p>
+                            <p class="leading-relaxed">Hola, soy tu espejo emocional. Dime cómo se siente tu alma en este segundo o dame un pensamiento y te crearé un poema psicodélico de inmediato.</p>
+                        </div>
+                    </div>
+
+                    <!-- Chat Inputs -->
+                    <div class="space-y-2 mt-auto">
+                        <div class="flex gap-2">
+                            <input id="chat-input" type="text" placeholder="Escribe un secreto o sentimiento..." class="flex-1 bg-white/5 border border-white/10 focus:border-euphoria-magenta rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-1 focus:ring-euphoria-magenta text-white" onkeydown="if(event.key === 'Enter') sendChatMessage()">
+                            <button onclick="sendChatMessage()" class="p-2.5 bg-euphoria-magenta text-white hover:bg-opacity-90 rounded-xl transition-all duration-300">
+                                <i data-lucide="send" class="w-4.5 h-4.5"></i>
+                            </button>
+                        </div>
+                        <div class="flex justify-between">
+                            <button onclick="quickSuggest('nostálgico')" class="text-[9px] text-gray-400 hover:text-euphoria-cyan bg-white/5 px-2 py-1 rounded-md">#Nostálgico</button>
+                            <button onclick="quickSuggest('eufórico')" class="text-[9px] text-gray-400 hover:text-euphoria-magenta bg-white/5 px-2 py-1 rounded-md">#Eufórico</button>
+                            <button onclick="quickSuggest('caótico')" class="text-[9px] text-gray-400 hover:text-purple-400 bg-white/5 px-2 py-1 rounded-md">#Caótico</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Party Rooms (Euphoria Sessions) -->
+                <div class="glass-panel rounded-3xl p-6">
+                    <h3 class="font-syne text-sm text-gray-400 uppercase tracking-widest mb-4">Salas de Escucha Activas</h3>
+                    <div class="space-y-4">
+                        <div class="p-4 rounded-2xl bg-gradient-to-tr from-euphoria-violet/20 to-transparent border border-white/5 hover:border-euphoria-violet/30 transition-all duration-300">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-[9px] uppercase font-bold tracking-wider text-euphoria-cyan bg-euphoria-cyan/10 px-2.5 py-0.5 rounded-full">En Vivo</span>
+                                <span class="text-[10px] text-gray-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> 2.4k oyendo</span>
+                            </div>
+                            <h4 class="font-bold text-xs text-white mb-1">Maddy's Bedroom Confessions</h4>
+                            <p class="text-[10px] text-gray-400 mb-3">Compartiendo vulnerabilidad sonora, lofi indie & ambient.</p>
+                            <button onclick="joinRoom('Maddy\'s Bedroom Confessions')" class="w-full py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl text-[11px] font-semibold tracking-wider transition-colors">
+                                SINTONIZAR CANAL
+                            </button>
+                        </div>
+                        
+                        <div class="p-4 rounded-2xl bg-gradient-to-tr from-euphoria-magenta/10 to-transparent border border-white/5 hover:border-euphoria-magenta/30 transition-all duration-300">
+                            <div class="flex justify-between items-start mb-2">
+                                <span class="text-[9px] uppercase font-bold tracking-wider text-euphoria-magenta bg-euphoria-magenta/10 px-2.5 py-0.5 rounded-full">En Vivo</span>
+                                <span class="text-[10px] text-gray-400 flex items-center gap-1"><i data-lucide="users" class="w-3 h-3"></i> 892 oyendo</span>
+                            </div>
+                            <h4 class="font-bold text-xs text-white mb-1">Afterparty Glitch Room</h4>
+                            <p class="text-[10px] text-gray-400 mb-3">Techno distorsionado, hyperpop y visuales generativos oscuros.</p>
+                            <button onclick="joinRoom('Afterparty Glitch Room')" class="w-full py-2 bg-white/5 hover:bg-white/10 text-white border border-white/10 rounded-xl text-[11px] font-semibold tracking-wider transition-colors">
+                                SINTONIZAR CANAL
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <!-- AUDIO PLAYER WIDGET (MINIMIZED FIXED BOTTOM) -->
+    <div id="ambient-player-panel" class="fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-lg glass-panel rounded-2xl p-4 flex items-center justify-between border-euphoria-cyan/40 shadow-[0_0_30px_rgba(72,202,228,0.15)] z-50">
+        <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-euphoria-violet flex items-center justify-center text-white font-bold text-sm overflow-hidden relative group">
+                <!-- Album cover aura simulation -->
+                <div class="absolute inset-0 bg-gradient-to-tr from-euphoria-violet via-euphoria-magenta to-euphoria-cyan animate-pulse"></div>
+                <i data-lucide="disc" class="w-5 h-5 text-white relative z-10 animate-spin-slow"></i>
+            </div>
+            <div>
+                <p id="player-track-name" class="text-xs font-bold text-white leading-tight">Labrinth - Still Don't Know My Name</p>
+                <p class="text-[9px] text-euphoria-cyan">AURA Ambient Synced Soundtrack</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-3">
+            <button onclick="prevTrack()" class="p-2 text-gray-400 hover:text-white transition-colors"><i data-lucide="skip-back" class="w-4 h-4"></i></button>
+            <button onclick="toggleMusic()" id="player-play-btn" class="p-2.5 bg-white text-euphoria-dark rounded-full hover:scale-105 transition-all"><i data-lucide="play" class="w-4.5 h-4.5"></i></button>
+            <button onclick="nextTrack()" class="p-2 text-gray-400 hover:text-white transition-colors"><i data-lucide="skip-forward" class="w-4 h-4"></i></button>
+        </div>
+        
+        <!-- AUDIO ELEMENT (Synth / Ambient sound simulating Spotify/Labrinth style soundtrack) -->
+        <audio id="ambient-audio" loop>
+            <!-- Royalty free synthwave/chill lofi loops representing Euphoria mood -->
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- GLOBAL INTERACTIVE NOTIFICATIONS -->
+    <div id="app-notification" class="fixed top-8 right-8 z-[100] glass-panel rounded-2xl p-4 border-euphoria-cyan/40 text-xs hidden shadow-[0_0_20px_rgba(72,202,228,0.3)] max-w-sm">
+        <div class="flex items-start gap-3">
+            <div class="p-2 bg-euphoria-cyan/20 text-euphoria-cyan rounded-lg">
+                <i data-lucide="bell" class="w-4 h-4"></i>
+            </div>
+            <div>
+                <h4 id="notification-title" class="font-bold text-white mb-0.5">Notificación de Aura</h4>
+                <p id="notification-msg" class="text-gray-300">Detalle de la sintonía...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration (using Gemini API as requested)
+        const apiKey = ""; // Empty string, provided at runtime
+
+        // Application State
+        let currentMood = 'euphoric';
+        let mediaFile = null;
+        let audioRecorderSimulated = false;
+        let isMusicPlaying = false;
+        let currentTrackIndex = 0;
+        
+        const playlist = [
+            { name: "Labrinth - Still Don't Know My Name (Lofi-Edit)", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+            { name: "Maddy's Dream Theme - Purple Glitter", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+            { name: "Aura Chillwave - Melancholic Stars", url: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }
+        ];
+
+        // Exponential backoff helper for fetch calls
+        async function fetchWithRetry(url, options, retries = 5, delay = 1000) {
+            try {
+                const response = await fetch(url, options);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return await response.json();
+            } catch (error) {
+                if (retries > 0) {
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    return fetchWithRetry(url, options, retries - 1, delay * 2);
+                }
+                throw error;
+            }
+        }
+
+        // Initialize Icons
+        window.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+            // Load Audio Player volume & tracks
+            const audio = document.getElementById('ambient-audio');
+            audio.volume = 0.25;
+        });
+
+        // Set Mood dynamic state for Post creator
+        function setPostMood(mood) {
+            currentMood = mood;
+            const glowDot = document.getElementById('glow-indicator-dot');
+            const glowText = document.getElementById('glow-indicator-text');
+            const creatorPanel = glowDot.closest('.glass-panel');
+
+            // Reset buttons
+            ['euphoric', 'melancholic', 'dreamy'].forEach(m => {
+                const btn = document.getElementById(`mood-${m}`);
+                btn.className = "px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-white/5 text-gray-400 hover:bg-white/10 transition-all duration-300";
+            });
+
+            // Set Active Button & Glow Elements
+            const activeBtn = document.getElementById(`mood-${mood}`);
+            
+            if (mood === 'euphoric') {
+                activeBtn.className = "px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-euphoria-violet text-white border border-euphoria-violet/80 transition-all duration-300 shadow-lg shadow-euphoria-violet/40";
+                glowDot.className = "w-2 h-2 rounded-full bg-euphoria-violet animate-pulse";
+                glowText.innerText = "Frecuencia Violeta";
+                creatorPanel.style.borderColor = "rgba(99, 32, 238, 0.4)";
+            } else if (mood === 'melancholic') {
+                activeBtn.className = "px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-euphoria-magenta text-white border border-euphoria-magenta/80 transition-all duration-300 shadow-lg shadow-euphoria-magenta/40";
+                glowDot.className = "w-2 h-2 rounded-full bg-euphoria-magenta animate-pulse";
+                glowText.innerText = "Frecuencia Magenta";
+                creatorPanel.style.borderColor = "rgba(216, 17, 89, 0.4)";
+            } else if (mood === 'dreamy') {
+                activeBtn.className = "px-3 py-1 rounded-full text-[10px] uppercase tracking-wider font-bold bg-euphoria-cyan text-euphoria-dark border border-euphoria-cyan/80 transition-all duration-300 shadow-lg shadow-euphoria-cyan/40";
+                glowDot.className = "w-2 h-2 rounded-full bg-euphoria-cyan animate-pulse";
+                glowText.innerText = "Frecuencia Onírica";
+                creatorPanel.style.borderColor = "rgba(72, 202, 228, 0.4)";
+            }
+        }
+
+        // Post Creator Media Attachments
+        function previewUploadedImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    mediaFile = e.target.result;
+                    const previewContainer = document.getElementById('enhancement-preview');
+                    const previewContent = document.getElementById('enhancement-content');
+                    previewContainer.classList.remove('hidden');
+                    
+                    previewContent.innerHTML = `
+                        <p class="text-xs text-euphoria-cyan mb-2 font-semibold">Visuales Añadidos</p>
+                        <img src="${mediaFile}" class="max-h-40 rounded-xl object-cover border border-white/10 shadow-lg mb-2">
+                    `;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
+        function toggleAudioRecorder() {
+            audioRecorderSimulated = !audioRecorderSimulated;
+            const previewContainer = document.getElementById('enhancement-preview');
+            const previewContent = document.getElementById('enhancement-content');
+            
+            if (audioRecorderSimulated) {
+                previewContainer.classList.remove('hidden');
+                previewContent.innerHTML = `
+                    <div class="flex items-center gap-3 p-2">
+                        <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                        <div class="text-left">
+                            <p class="text-xs text-white font-bold">Mensaje Sensorial Grabándose...</p>
+                            <p class="text-[10px] text-gray-400">Capturando la vibración de tu voz</p>
+                        </div>
+                    </div>
+                `;
+                showNotification("Aura Audio", "El grabador sensorial de espectro de voz está encendido.");
+            } else {
+                clearEnhancements();
+            }
+        }
+
+        function clearEnhancements() {
+            mediaFile = null;
+            audioRecorderSimulated = false;
+            document.getElementById('enhancement-preview').classList.add('hidden');
+            document.getElementById('image-uploader').value = "";
+        }
+
+        // Call Gemini API to generate Euphoria-style Poetry or Emotional Art Description
+        async function triggerGeminiAuraArt() {
+            const promptInput = document.getElementById('post-text').value.trim();
+            const previewContainer = document.getElementById('enhancement-preview');
+            const previewContent = document.getElementById('enhancement-content');
+
+            previewContainer.classList.remove('hidden');
+            previewContent.innerHTML = `
+                <div class="flex flex-col items-center justify-center py-4">
+                    <div class="w-8 h-8 rounded-full border-2 border-euphoria-cyan border-t-transparent animate-spin mb-2"></div>
+                    <p class="text-xs text-gray-300">Glitter AI decodificando tu espectro de Aura...</p>
+                </div>
+            `;
+
+            const conceptText = promptInput || "una noche bajo luces violetas y melancolía de cristal";
+            const systemPrompt = "Eres un generador de arte de texto ultra abstracto con la estética de la serie 'Euphoria'. Genera exclusivamente un fragmento de poesía moderno y salvaje (máximo 3 líneas) y describe un fondo de color psicodélico para acompañarlo. Usa un tono místico, emocional y glamuroso. Idioma: Español.";
+
+            try {
+                // Request Gemini text generation
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: `Escribe un aura-art poético basado en este sentimiento: ${conceptText}` }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+
+                const result = await fetchWithRetry(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const generatedText = result.candidates?.[0]?.content?.parts?.[0]?.text || "El vacío brilla en tonos de luz de neón.";
+                
+                previewContent.innerHTML = `
+                    <div class="text-center p-3">
+                        <p class="text-[10px] text-euphoria-cyan uppercase tracking-widest font-bold mb-2">AURA POETRY GENERATOR (IA)</p>
+                        <p class="text-sm italic text-white font-light leading-relaxed mb-3">"${generatedText.replace(/"/g, '')}"</p>
+                        <div class="flex justify-center gap-2">
+                            <button onclick="applyAuraPoetry(\`${generatedText.replace(/'/g, "\\'")}\`)" class="text-[10px] bg-white text-euphoria-dark font-bold px-3 py-1.5 rounded-lg">Aplicar al Post</button>
+                            <button onclick="clearEnhancements()" class="text-[10px] bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-gray-400">Descartar</button>
+                        </div>
+                    </div>
+                `;
+            } catch (err) {
+                console.error(err);
+                // Fallback simulation if network or API Key is unavailable
+                setTimeout(() => {
+                    const fallbackPoetry = "La noche parpadea en morado profundo, el brillo oculta las cicatrices líquidas de un sueño eterno.";
+                    previewContent.innerHTML = `
+                        <div class="text-center p-3">
+                            <p class="text-[10px] text-euphoria-cyan uppercase tracking-widest font-bold mb-2">AURA POETRY (SIMULADO)</p>
+                            <p class="text-sm italic text-white font-light leading-relaxed mb-3">"${fallbackPoetry}"</p>
+                            <div class="flex justify-center gap-2">
+                                <button onclick="applyAuraPoetry(\`${fallbackPoetry}\`)" class="text-[10px] bg-white text-euphoria-dark font-bold px-3 py-1.5 rounded-lg">Aplicar al Post</button>
+                                <button onclick="clearEnhancements()" class="text-[10px] bg-white/5 border border-white/10 px-3 py-1.5 rounded-lg text-gray-400">Descartar</button>
+                            </div>
+                        </div>
+                    `;
+                }, 1200);
+            }
+        }
+
+        function applyAuraPoetry(poetryText) {
+            document.getElementById('post-text').value = poetryText;
+            clearEnhancements();
+            showNotification("Poesía Aura Aplicada", "Hemos moldeado tu espectro al feed creativo.");
+        }
+
+        // Publish Post implementation
+        function publishPost() {
+            const postText = document.getElementById('post-text').value.trim();
+            if (!postText && !mediaFile) {
+                showNotification("Espacio de Esencia Vacío", "Por favor transmite algún pensamiento o imagen para sintonizar.");
+                return;
+            }
+
+            const feed = document.getElementById('posts-feed');
+            const newPostId = `post-${Date.now()}`;
+            
+            // Generate visual styles according to mood
+            let moodBadgeColor = '';
+            let moodText = '';
+            let moodBorder = '';
+            let decorativeGradient = '';
+
+            if (currentMood === 'euphoric') {
+                moodBadgeColor = 'text-euphoria-cyan bg-euphoria-cyan/10 border-euphoria-cyan/30';
+                moodText = 'Eufórico';
+                moodBorder = 'border-euphoria-violet/30';
+                decorativeGradient = 'from-euphoria-violet to-transparent';
+            } else if (currentMood === 'melancholic') {
+                moodBadgeColor = 'text-euphoria-magenta bg-euphoria-magenta/10 border-euphoria-magenta/30';
+                moodText = 'Melancólico';
+                moodBorder = 'border-euphoria-magenta/30';
+                decorativeGradient = 'from-euphoria-magenta to-transparent';
+            } else {
+                moodBadgeColor = 'text-purple-300 bg-purple-500/10 border-purple-500/30';
+                moodText = 'Onírico';
+                moodBorder = 'border-purple-500/30';
+                decorativeGradient = 'from-purple-600 to-transparent';
+            }
+
+            // Image structure if uploaded
+            let imgHTML = '';
+            if (mediaFile) {
+                imgHTML = `
+                    <div class="relative rounded-2xl overflow-hidden mb-4 border border-white/5 aspect-video">
+                        <div class="absolute inset-0 bg-gradient-to-t from-euphoria-dark/60 via-transparent to-transparent z-10"></div>
+                        <img src="${mediaFile}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                `;
+            }
+
+            const postHTML = `
+                <div id="${newPostId}" class="glass-panel rounded-3xl p-6 transition-all duration-500 hover:-translate-y-1 relative overflow-hidden group ${moodBorder}">
+                    <div class="absolute -top-10 -left-10 w-40 h-40 bg-gradient-to-tr ${decorativeGradient} rounded-full filter blur-xl opacity-10 group-hover:opacity-20 transition-opacity"></div>
+                    
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center gap-3">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" alt="Maddy" class="w-10 h-10 rounded-full object-cover border border-white/25">
+                            <div>
+                                <h4 class="font-bold text-xs text-white">Maddy Perez</h4>
+                                <p class="text-[9px] text-gray-400">Hace unos segundos via #AuraWave</p>
+                            </div>
+                        </div>
+                        <span class="text-[10px] uppercase font-bold tracking-widest ${moodBadgeColor} border px-3 py-1 rounded-full">${moodText}</span>
+                    </div>
+
+                    <p class="text-sm text-gray-200 leading-relaxed mb-4 font-light">${postText}</p>
+                    
+                    ${imgHTML}
+
+                    <div class="flex items-center justify-between pt-4 border-t border-white/5">
+                        <div class="flex gap-4">
+                            <button onclick="reactToPost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-magenta transition-colors">
+                                <i data-lucide="heart" class="w-4.5 h-4.5"></i>
+                                <span class="like-counter">0</span>
+                            </button>
+                            <button onclick="toggleComments('comment-${newPostId}')" class="flex items-center gap-2 text-xs text-gray-400 hover:text-euphoria-cyan transition-colors">
+                                <i data-lucide="message-circle" class="w-4.5 h-4.5"></i>
+                                <span>0</span>
+                            </button>
+                            <button onclick="reverberatePost(this)" class="flex items-center gap-2 text-xs text-gray-400 hover:text-purple-400 transition-colors">
+                                <i data-lucide="repeat" class="w-4.5 h-4.5"></i>
+                                <span>0</span>
+                            </button>
+                        </div>
+                        <button class="text-xs text-gray-400 hover:text-white transition-colors">
+                            <i data-lucide="share-2" class="w-4.5 h-4.5"></i>
+                        </button>
+                    </div>
+
+                    <div id="comment-${newPostId}" class="hidden mt-4 pt-4 border-t border-white/5">
+                        <p class="text-[10px] text-gray-500">No hay comentarios en este espectro emocional aún.</p>
+                    </div>
+                </div>
+            `;
+
+            // Insert new post into top of feed with animation
+            feed.insertAdjacentHTML('afterbegin', postHTML);
+            lucide.createIcons();
+            
+            // Clear inputs
+            document.getElementById('post-text').value = '';
+            clearEnhancements();
+            showNotification("Frecuencia Emitida", "Tu esencia se ha fundido con el cosmos de AURA.");
+        }
+
+        // Like / Heart Reaction
+        function reactToPost(button) {
+            const icon = button.querySelector('[data-lucide="heart"]');
+            const span = button.querySelector('span');
+            let count = parseFloat(span.innerText);
+
+            if (icon.classList.contains('text-euphoria-magenta')) {
+                icon.classList.remove('text-euphoria-magenta', 'fill-euphoria-magenta');
+                span.innerText = span.innerText.includes('k') ? count - 0.1 + 'k' : count - 1;
+                showNotification("Aura Reacción", "Sintonía reducida.");
+            } else {
+                icon.classList.add('text-euphoria-magenta', 'fill-euphoria-magenta');
+                span.innerText = span.innerText.includes('k') ? count + 0.1 + 'k' : count + 1;
+                showNotification("Aura Reacción", "Sintonizando amor absoluto con esta frecuencia ✨💖");
+            }
+        }
+
+        // Repost / Reverberate
+        function reverberatePost(button) {
+            const icon = button.querySelector('[data-lucide="repeat"]');
+            const span = button.querySelector('span');
+            let count = parseInt(span.innerText);
+            
+            if (icon.classList.contains('text-purple-400')) {
+                icon.classList.remove('text-purple-400');
+                span.innerText = count - 1;
+            } else {
+                icon.classList.add('text-purple-400');
+                span.innerText = count + 1;
+                showNotification("Reverberación", "Has amplificado esta frecuencia en tu propio campo electromagnético.");
+            }
+        }
+
+        // Toggle comment collapse
+        function toggleComments(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+            } else {
+                element.classList.add('hidden');
+            }
+        }
+
+        // Trending Topic Click handler
+        function selectFrequency(hashtag) {
+            showNotification("Frecuencia Seleccionada", `Filtro adaptado al espectro #${hashtag}`);
+            // Adapt background vibes to mock filter
+            const indicator = document.getElementById('glow-indicator-text');
+            indicator.innerText = `#${hashtag}`;
+        }
+
+        // GLITTER AI INTERACTION CHAT (Gemini Text Response)
+        async function sendChatMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const messageText = chatInput.value.trim();
+            if (!messageText) return;
+
+            // Render User message
+            const messageArea = document.getElementById('chat-messages');
+            messageArea.innerHTML += `
+                <div class="bg-white/5 border border-white/5 rounded-2xl p-3 text-gray-200 self-end text-right">
+                    <p class="font-semibold text-euphoria-magenta mb-1">Tú @maddy</p>
+                    <p class="leading-relaxed">${messageText}</p>
+                </div>
+            `;
+            chatInput.value = '';
+            messageArea.scrollTop = messageArea.scrollHeight;
+
+            // Loading AI Bubble
+            const loadingId = `load-${Date.now()}`;
+            messageArea.innerHTML += `
+                <div id="${loadingId}" class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-gray-200 animate-pulse">
+                    <p class="font-semibold text-euphoria-cyan mb-1">Glitter AI ✨</p>
+                    <p class="leading-relaxed">Sintiendo tus secretos en los cables...</p>
+                </div>
+            `;
+            messageArea.scrollTop = messageArea.scrollHeight;
+
+            const systemPrompt = "Eres 'Glitter AI', una mentora artificial y amiga poética inspirada en la atmósfera dramática, rebelde y empática de 'Euphoria'. Das respuestas rápidas de tono glamuroso, llenas de metáforas sobre brillo, neón, oscuridad y estrellas rotas. Responde de forma concisa y muy expresiva en español.";
+
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: `Escucha mi secreto o emoción y responde como Glitter AI: ${messageText}` }] }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] }
+                };
+
+                const result = await fetchWithRetry(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const aiResponse = result.candidates?.[0]?.content?.parts?.[0]?.text || "A veces el dolor es solo purpurina esperando el momento ideal para brillar de nuevo.";
+
+                // Remove loading bubble and render complete message
+                document.getElementById(loadingId).remove();
+                messageArea.innerHTML += `
+                    <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-gray-200 shadow-md">
+                        <p class="font-semibold text-euphoria-cyan mb-1">Glitter AI ✨</p>
+                        <p class="leading-relaxed">${aiResponse}</p>
+                    </div>
+                `;
+                messageArea.scrollTop = messageArea.scrollHeight;
+            } catch (err) {
+                console.error(err);
+                // Simulate fallback AI if offline or keys missing
+                setTimeout(() => {
+                    document.getElementById(loadingId).remove();
+                    const simulatedVibes = [
+                        "Los espejos siempre mienten cuando lloras. Maquíllate con estrellas caídas y reclama tu trono esta noche.",
+                        "Esa vulnerabilidad no es una debilidad, Maddy. Es la única forma de purpurina real en un mundo de plástico.",
+                        "Incluso en el caos más absoluto, el morado y el azul de tu aura siguen bailando sincronizados. Confía en la noche."
+                    ];
+                    const chosenVibe = simulatedVibes[Math.floor(Math.random() * simulatedVibes.length)];
+                    
+                    messageArea.innerHTML += `
+                        <div class="bg-white/5 border border-white/10 rounded-2xl p-3.5 text-gray-200 shadow-md">
+                            <p class="font-semibold text-euphoria-cyan mb-1">Glitter AI ✨</p>
+                            <p class="leading-relaxed">${chosenVibe}</p>
+                        </div>
+                    `;
+                    messageArea.scrollTop = messageArea.scrollHeight;
+                }, 1000);
+            }
+        }
+
+        function quickSuggest(tag) {
+            document.getElementById('chat-input').value = `Me siento increíblemente ${tag} hoy, ¿qué le depara la noche a mi espectro?`;
+            sendChatMessage();
+        }
+
+        // Room joining mock interaction
+        function joinRoom(roomName) {
+            showNotification("Sintonizando Sala", `Te has conectado al flujo sonoro de: ${roomName}.`);
+            // Alter playlist based on room vibe
+            if (roomName.includes("Bedroom")) {
+                currentTrackIndex = 0;
+            } else {
+                currentTrackIndex = 1;
+            }
+            playTrack();
+        }
+
+        // Music player controls
+        function toggleMusic() {
+            const audio = document.getElementById('ambient-audio');
+            const playIconBtn = document.getElementById('player-play-btn');
+            const mainHeaderBtn = document.getElementById('music-btn');
+
+            if (isMusicPlaying) {
+                audio.pause();
+                playIconBtn.innerHTML = `<i data-lucide="play" class="w-4.5 h-4.5"></i>`;
+                mainHeaderBtn.innerHTML = `<i data-lucide="music" class="w-5 h-5"></i>`;
+                isMusicPlaying = false;
+                showNotification("Música en Pausa", "El silencio se apodera de tu frecuencia.");
+            } else {
+                audio.src = playlist[currentTrackIndex].url;
+                audio.play().then(() => {
+                    playIconBtn.innerHTML = `<i data-lucide="pause" class="w-4.5 h-4.5"></i>`;
+                    mainHeaderBtn.innerHTML = `<i data-lucide="volume-2" class="w-5 h-5 animate-bounce"></i>`;
+                    isMusicPlaying = true;
+                    showNotification("Música Sincronizada", `Escuchando: ${playlist[currentTrackIndex].name}`);
+                }).catch(err => {
+                    console.log("Audio play was blocked by browser. Interaction required first.");
+                });
+            }
+            lucide.createIcons();
+        }
+
+        function playTrack() {
+            const audio = document.getElementById('ambient-audio');
+            const playIconBtn = document.getElementById('player-play-btn');
+            const playerTrackName = document.getElementById('player-track-name');
+            const topTrackTitle = document.getElementById('track-title');
+
+            audio.src = playlist[currentTrackIndex].url;
+            playerTrackName.innerText = playlist[currentTrackIndex].name;
+            if (topTrackTitle) topTrackTitle.innerText = playlist[currentTrackIndex].name;
+
+            audio.play().then(() => {
+                playIconBtn.innerHTML = `<i data-lucide="pause" class="w-4.5 h-4.5"></i>`;
+                isMusicPlaying = true;
+            }).catch(e => console.log(e));
+            lucide.createIcons();
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % playlist.length;
+            playTrack();
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + playlist.length) % playlist.length;
+            playTrack();
+        }
+
+        // Custom non-blocking Notifications
+        function showNotification(title, message) {
+            const panel = document.getElementById('app-notification');
+            const titleEl = document.getElementById('notification-title');
+            const msgEl = document.getElementById('notification-msg');
+
+            titleEl.innerText = title;
+            msgEl.innerText = message;
+            panel.classList.remove('hidden');
+            
+            setTimeout(() => {
+                panel.classList.add('hidden');
+            }, 4000);
+        }
+    </script>
+</body>
+</html>
